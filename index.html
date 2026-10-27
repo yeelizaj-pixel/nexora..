@@ -1,0 +1,1370 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="NEXORA AI, portafolio profesional de Jashiel Jimenez.">
+  <meta name="theme-color" content="#080d16">
+  <title>NEXORA AI | Portafolio Profesional</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #080d16;
+      --surface: #101a29;
+      --surface2: #152338;
+      --text: #edf5ff;
+      --muted: #a9b8ca;
+      --accent: #35f2a1;
+      --accent2: #36a3ff;
+      --border: rgba(53, 242, 161, 0.22);
+      --nav: rgba(8, 13, 22, 0.94);
+      --shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+    }
+
+    body.light-mode {
+      --bg: #f3f7fc;
+      --surface: #ffffff;
+      --surface2: #eaf1f9;
+      --text: #132238;
+      --muted: #506177;
+      --accent: #087e52;
+      --accent2: #075fba;
+      --border: rgba(8, 126, 82, 0.2);
+      --nav: rgba(243, 247, 252, 0.95);
+      --shadow: 0 12px 35px rgba(19, 34, 56, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", Arial, sans-serif;
+      line-height: 1.7;
+      transition: background 0.25s, color 0.25s;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, h5 {
+      color: var(--text);
+      font-weight: 800;
+    }
+
+    p {
+      color: var(--muted);
+    }
+
+    a {
+      color: var(--accent2);
+    }
+
+    section {
+      padding: 85px 0;
+      scroll-margin-top: 75px;
+    }
+
+    #matrix {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: 0.18;
+    }
+
+    .navbar {
+      background: var(--nav);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+    }
+
+    .navbar-brand {
+      color: var(--accent) !important;
+      font-weight: 900;
+      letter-spacing: 2px;
+    }
+
+    .nav-link {
+      color: var(--text) !important;
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover {
+      color: var(--accent) !important;
+    }
+
+    .theme-btn {
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      padding: 7px 13px;
+    }
+
+    .theme-btn:hover {
+      border-color: var(--accent);
+    }
+
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      padding-top: 120px;
+    }
+
+    .eyebrow,
+    .section-kicker {
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.7rem, 7vw, 5.3rem);
+      line-height: 1.08;
+      margin: 18px 0;
+    }
+
+    .gradient-text {
+      color: var(--accent);
+    }
+
+    .hero-copy {
+      max-width: 650px;
+      font-size: 1.08rem;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin: 8px 0 14px;
+    }
+
+    .profile-frame {
+      width: min(310px, 80vw);
+      aspect-ratio: 1;
+      margin: auto;
+      padding: 8px;
+      border: 2px solid var(--accent);
+      border-radius: 28px;
+      background: var(--surface);
+      box-shadow: 0 0 40px rgba(53, 242, 161, 0.15);
+      transform: rotate(2deg);
+    }
+
+    .profile-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 20px;
+      transform: rotate(-2deg);
+    }
+
+    .btn-accent {
+      display: inline-block;
+      background: var(--accent);
+      color: #07130e;
+      border: 1px solid var(--accent);
+      border-radius: 8px;
+      padding: 12px 20px;
+      font-weight: 800;
+      text-decoration: none;
+      transition: transform 0.2s, filter 0.2s;
+    }
+
+    .btn-accent:hover {
+      filter: brightness(1.1);
+      color: #07130e;
+      transform: translateY(-2px);
+    }
+
+    .btn-outline-custom {
+      display: inline-block;
+      border: 1px solid var(--accent2);
+      color: var(--text);
+      border-radius: 8px;
+      padding: 12px 20px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .btn-outline-custom:hover {
+      background: var(--accent2);
+      color: #ffffff;
+    }
+
+    .surface-card {
+      height: 100%;
+      padding: 25px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      transition: transform 0.25s, border-color 0.25s;
+    }
+
+    .surface-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent);
+    }
+
+    .tech-icon {
+      font-size: 2.4rem;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .small-muted {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    /* TARJETAS DE PROYECTOS */
+
+    .project-card {
+      overflow: hidden;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-image-wrap {
+      width: 100%;
+      height: 220px;
+      overflow: hidden;
+      background: var(--surface2);
+    }
+
+    .project-image {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      transition: transform 0.45s ease;
+    }
+
+    .project-card:hover .project-image {
+      transform: scale(1.06);
+    }
+
+    .project-content {
+      padding: 23px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .project-tag {
+      display: inline-block;
+      align-self: flex-start;
+      color: var(--accent);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 3px 10px;
+      font-size: 0.78rem;
+      margin-bottom: 12px;
+    }
+
+    .project-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: auto;
+      padding-top: 18px;
+    }
+
+    .project-links a {
+      font-weight: 700;
+      font-size: 0.92rem;
+      text-decoration: none;
+    }
+
+    .project-links a:hover {
+      text-decoration: underline;
+    }
+
+    .filter-btn {
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 25px;
+      padding: 8px 18px;
+      margin: 4px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: var(--accent);
+      color: #07130e;
+      font-weight: 800;
+    }
+
+    .experience-line {
+      border-left: 2px solid var(--accent);
+      padding-left: 20px;
+    }
+
+    .experience-date {
+      color: var(--accent);
+      font-weight: 800;
+      font-size: 0.88rem;
+    }
+
+    .video-frame {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #000;
+    }
+
+    .contact-panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: clamp(20px, 4vw, 38px);
+      box-shadow: var(--shadow);
+    }
+
+    .form-control {
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 12px;
+    }
+
+    .form-control:focus {
+      background: var(--surface);
+      color: var(--text);
+      border-color: var(--accent);
+      box-shadow: 0 0 0 0.2rem rgba(53, 242, 161, 0.12);
+    }
+
+    .form-control::placeholder {
+      color: var(--muted);
+      opacity: 0.8;
+    }
+
+    label {
+      color: var(--text);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 0;
+      background: var(--surface);
+    }
+
+    .social-link {
+      display: inline-grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      color: var(--text);
+      text-decoration: none;
+      margin: 4px;
+      transition: color 0.2s, border-color 0.2s, transform 0.2s;
+    }
+
+    .social-link:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    #backToTop {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 10;
+      display: none;
+      width: 46px;
+      height: 46px;
+      border: none;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #07130e;
+      font-size: 1.2rem;
+      box-shadow: var(--shadow);
+    }
+
+    .status {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .d-none {
+      display: none !important;
+    }
+
+    @media (max-width: 767px) {
+      section {
+        padding: 65px 0;
+      }
+
+      .hero {
+        text-align: center;
+        min-height: auto;
+        padding-bottom: 65px;
+      }
+
+      .hero-copy {
+        margin-inline: auto;
+      }
+
+      .profile-frame {
+        margin-top: 25px;
+      }
+
+      .navbar-nav {
+        padding: 12px 0;
+      }
+
+      .project-image-wrap {
+        height: 210px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="matrix" aria-hidden="true"></canvas>
+
+  <!-- NAVEGACIÓN -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#inicio">NEXORA AI.</a>
+
+      <button
+        class="navbar-toggler theme-btn"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#menu"
+        aria-controls="menu"
+        aria-expanded="false"
+        aria-label="Abrir menú">
+        <i class="bi bi-list"></i>
+      </button>
+
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+          <li class="nav-item"><a class="nav-link" href="#sobre-mi">Sobre mí</a></li>
+          <li class="nav-item"><a class="nav-link" href="#tecnologias">Tecnologías</a></li>
+          <li class="nav-item"><a class="nav-link" href="#proyectos">Proyectos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#experiencia">Experiencia</a></li>
+          <li class="nav-item"><a class="nav-link" href="#videos">Videos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+
+          <li class="nav-item ms-lg-2">
+            <button class="theme-btn mt-2 mt-lg-0" id="themeToggle" type="button">
+              <i class="bi bi-sun-fill" id="themeIcon"></i>
+              <span id="themeLabel">Modo claro</span>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- INICIO -->
+    <section class="hero" id="inicio">
+      <div class="container">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-7">
+            <div class="eyebrow">Tecnología · Creatividad · Futuro</div>
+
+            <h1>
+              Hola, soy
+              <br>
+              <span class="gradient-text">Jashiel Jimenez</span>
+            </h1>
+
+            <h2 class="h4 mb-3">Estudiante de Ingeniería en Sistemas</h2>
+
+            <p class="hero-copy">
+              Me interesa la tecnología, el desarrollo de soluciones digitales
+              y el potencial de la inteligencia artificial. En este portafolio
+              comparto mis proyectos, aprendizajes y mi crecimiento en el mundo
+              de los sistemas.
+            </p>
+
+            <div class="d-flex flex-wrap gap-3 mt-4 justify-content-center justify-content-lg-start">
+              <a class="btn-accent" href="#proyectos">
+                Explorar proyectos <i class="bi bi-arrow-right"></i>
+              </a>
+
+              <a class="btn-outline-custom" href="#contacto">
+                Contactarme
+              </a>
+            </div>
+
+            <p class="small-muted mt-4">
+              <i class="bi bi-geo-alt"></i>
+              República Dominicana · En formación continua
+            </p>
+          </div>
+
+          <div class="col-lg-5">
+            <div class="profile-frame">
+              <img
+                class="profile-photo"
+                src="img/perfilj.jpg"
+                alt="Fotografía de perfil de Jashiel Jimenez">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOBRE MÍ -->
+    <section id="sobre-mi">
+      <div class="container">
+        <div class="row g-4 align-items-stretch">
+          <div class="col-lg-5">
+            <div class="section-kicker">01 / Perfil</div>
+            <h2 class="section-title">Sobre mí</h2>
+
+            <p>
+              Soy estudiante de Ingeniería en Sistemas y estoy construyendo
+              mis conocimientos en programación, diseño web y herramientas
+              digitales. Me gusta aprender haciendo, investigar nuevas
+              tecnologías y convertir ideas en proyectos prácticos.
+            </p>
+
+            <p>
+              Mi objetivo es desarrollar habilidades técnicas, aprender a
+              trabajar en equipo y descubrir cómo la inteligencia artificial
+              puede apoyar la creación de soluciones útiles.
+            </p>
+          </div>
+
+          <div class="col-lg-7">
+            <div class="surface-card">
+              <h3 class="h5 mb-4">
+                <i class="bi bi-stars gradient-text"></i>
+                Mi enfoque
+              </h3>
+
+              <div class="row g-4">
+                <div class="col-sm-6">
+                  <i class="bi bi-code-slash tech-icon"></i>
+                  <h4 class="h6">Aprendizaje práctico</h4>
+                  <p class="small-muted mb-0">
+                    Practicar programación y aplicar conceptos en proyectos académicos.
+                  </p>
+                </div>
+
+                <div class="col-sm-6">
+                  <i class="bi bi-lightbulb tech-icon"></i>
+                  <h4 class="h6">Solución de problemas</h4>
+                  <p class="small-muted mb-0">
+                    Analizar necesidades y proponer ideas claras y funcionales.
+                  </p>
+                </div>
+
+                <div class="col-sm-6">
+                  <i class="bi bi-robot tech-icon"></i>
+                  <h4 class="h6">Inteligencia artificial</h4>
+                  <p class="small-muted mb-0">
+                    Explorar herramientas de IA para aprender y crear soluciones.
+                  </p>
+                </div>
+
+                <div class="col-sm-6">
+                  <i class="bi bi-people tech-icon"></i>
+                  <h4 class="h6">Trabajo colaborativo</h4>
+                  <p class="small-muted mb-0">
+                    Compartir ideas y crecer con otros estudiantes y profesionales.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TECNOLOGÍAS -->
+    <section id="tecnologias">
+      <div class="container">
+        <div class="text-center mb-5">
+          <div class="section-kicker">02 / Herramientas</div>
+          <h2 class="section-title">Tecnologías que estoy explorando</h2>
+          <p>Herramientas y lenguajes que forman parte de mi aprendizaje.</p>
+        </div>
+
+        <div class="row g-3">
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="surface-card text-center">
+              <i class="bi bi-filetype-html tech-icon"></i>
+              <div class="fw-bold">HTML5</div>
+              <p class="small-muted mb-0">Estructura web</p>
+            </div>
+          </div>
+
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="surface-card text-center">
+              <i class="bi bi-filetype-css tech-icon"></i>
+              <div class="fw-bold">CSS3</div>
+              <p class="small-muted mb-0">Diseño visual</p>
+            </div>
+          </div>
+
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="surface-card text-center">
+              <i class="bi bi-filetype-js tech-icon"></i>
+              <div class="fw-bold">JavaScript</div>
+              <p class="small-muted mb-0">Interactividad</p>
+            </div>
+          </div>
+
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="surface-card text-center">
+              <i class="bi bi-bootstrap tech-icon"></i>
+              <div class="fw-bold">Bootstrap</div>
+              <p class="small-muted mb-0">Diseño adaptable</p>
+            </div>
+          </div>
+
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="surface-card text-center">
+              <i class="bi bi-filetype-cs tech-icon"></i>
+              <div class="fw-bold">C#</div>
+              <p class="small-muted mb-0">Programación</p>
+            </div>
+          </div>
+
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="surface-card text-center">
+              <i class="bi bi-git tech-icon"></i>
+              <div class="fw-bold">Git y GitHub</div>
+              <p class="small-muted mb-0">Control de versiones</p>
+            </div>
+          </div>
+
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="surface-card text-center">
+              <i class="bi bi-database tech-icon"></i>
+              <div class="fw-bold">Bases de datos</div>
+              <p class="small-muted mb-0">Gestión de información</p>
+            </div>
+          </div>
+
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="surface-card text-center">
+              <i class="bi bi-robot tech-icon"></i>
+              <div class="fw-bold">Herramientas de IA</div>
+              <p class="small-muted mb-0">Apoyo al desarrollo</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROYECTOS -->
+    <section id="proyectos">
+      <div class="container">
+        <div class="text-center mb-4">
+          <div class="section-kicker">03 / Portafolio</div>
+          <h2 class="section-title">Mis proyectos</h2>
+          <p>
+            Una selección de proyectos web y prácticas académicas
+            que forman parte de mi aprendizaje.
+          </p>
+        </div>
+
+        <!-- FILTROS -->
+        <div class="text-center mb-4">
+          <button class="filter-btn active" type="button" data-filter="todos">
+            Todos
+          </button>
+
+          <button class="filter-btn" type="button" data-filter="web">
+            Web
+          </button>
+
+          <button class="filter-btn" type="button" data-filter="app">
+            Aplicaciones
+          </button>
+
+          <button class="filter-btn" type="button" data-filter="finanzas">
+            Finanzas
+          </button>
+        </div>
+
+        <div class="row g-4" id="projectGrid">
+
+          <!-- PROYECTO 1: KIMETSU NO MIRAI -->
+          <div class="col-md-6 col-lg-4 project-item" data-category="web">
+            <article class="surface-card project-card">
+              <div class="project-image-wrap">
+                <img
+                  class="project-image"
+                  src="https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=900&q=85"
+                  alt="Ilustración de estilo anime para el proyecto Kimetsu no Mirai"
+                  loading="lazy">
+              </div>
+
+              <div class="project-content">
+                <span class="project-tag">Desarrollo web</span>
+
+                <h3 class="h5">KIMETSU NO MIRAI</h3>
+
+                <p class="small-muted">
+                  Sitio web inspirado en el universo del anime, con una
+                  propuesta visual personalizada, contenido temático y una
+                  experiencia diseñada para los visitantes.
+                </p>
+
+                <p class="small-muted mb-0">
+                  <strong>Herramientas:</strong> HTML, CSS y JavaScript.
+                </p>
+
+                <div class="project-links">
+                  <a
+                    href="https://yeelizaj-pixel.github.io/KIMETSU-NO-MIRAII/index.html"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    Ver proyecto <i class="bi bi-box-arrow-up-right"></i>
+                  </a>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- PROYECTO 2: .NET MAUI -->
+          <div class="col-md-6 col-lg-4 project-item" data-category="app">
+            <article class="surface-card project-card">
+              <div class="project-image-wrap">
+                <img
+                  class="project-image"
+                  src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&q=85"
+                  alt="Teléfono móvil que representa el desarrollo de aplicaciones"
+                  loading="lazy">
+              </div>
+
+              <div class="project-content">
+                <span class="project-tag">Aplicaciones móviles</span>
+
+                <h3 class="h5">Prácticas con .NET MAUI</h3>
+
+                <p class="small-muted">
+                  Prácticas académicas de desarrollo de interfaces, variables,
+                  tipos de datos, validación de campos y estructuras condicionales
+                  para aplicaciones.
+                </p>
+
+                <p class="small-muted mb-0">
+                  <strong>Herramientas:</strong> C#, XAML y .NET MAUI.
+                </p>
+
+                <div class="project-links">
+                  <a href="#contacto">
+                    Consultar información <i class="bi bi-arrow-right"></i>
+                  </a>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- PROYECTO 3: SIMULACIÓN FINANCIERA -->
+          <div class="col-md-6 col-lg-4 project-item" data-category="finanzas">
+            <article class="surface-card project-card">
+              <div class="project-image-wrap">
+                <img
+                  class="project-image"
+                  src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=85"
+                  alt="Gráficos y datos financieros en una pantalla"
+                  loading="lazy">
+              </div>
+
+              <div class="project-content">
+                <span class="project-tag">Proyecto académico</span>
+
+                <h3 class="h5">Simulación financiera</h3>
+
+                <p class="small-muted">
+                  Práctica de matemática financiera para analizar tasas de
+                  interés, rendimientos y cálculos relacionados con operaciones
+                  financieras y evaluación de alternativas.
+                </p>
+
+                <p class="small-muted mb-0">
+                  <strong>Área:</strong> Cálculos y matemática financiera.
+                </p>
+
+                <div class="project-links">
+                  <a href="#contacto">
+                    Consultar información <i class="bi bi-arrow-right"></i>
+                  </a>
+                </div>
+              </div>
+            </article>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCIA -->
+    <section id="experiencia">
+      <div class="container">
+        <div class="text-center mb-5">
+          <div class="section-kicker">04 / Trayectoria</div>
+          <h2 class="section-title">Mi experiencia de aprendizaje</h2>
+          <p>Etapas académicas que contribuyen a mi desarrollo profesional.</p>
+        </div>
+
+        <div class="row justify-content-center g-4">
+          <div class="col-md-6 col-lg-4">
+            <div class="surface-card experience-line">
+              <div class="experience-date">Etapa actual</div>
+              <h3 class="h5 mt-2">Ingeniería en Sistemas</h3>
+              <p class="small-muted">
+                Formación universitaria en fundamentos de sistemas,
+                programación y tecnología.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4">
+            <div class="surface-card experience-line">
+              <div class="experience-date">Práctica académica</div>
+              <h3 class="h5 mt-2">Desarrollo de aplicaciones</h3>
+              <p class="small-muted">
+                Ejercicios de lógica, tipos de datos, variables e interfaces
+                con C# y .NET MAUI.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4">
+            <div class="surface-card experience-line">
+              <div class="experience-date">En desarrollo</div>
+              <h3 class="h5 mt-2">Desarrollo web e IA</h3>
+              <p class="small-muted">
+                Creación de páginas adaptables y exploración de herramientas
+                de inteligencia artificial.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIDEOS -->
+    <section id="videos">
+      <div class="container">
+        <div class="text-center mb-5">
+          <div class="section-kicker">05 / Recursos audiovisuales</div>
+          <h2 class="section-title">Videos recomendados</h2>
+          <p>Material audiovisual para complementar el aprendizaje.</p>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4">
+            <div class="surface-card">
+              <iframe
+                class="video-frame"
+                src="https://www.youtube.com/embed/pn4ZTSpeHwE"
+                title="Video de tecnología uno"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen>
+              </iframe>
+
+              <h3 class="h6 mt-3">Recurso audiovisual 1</h3>
+              <p class="small-muted mb-0">
+                Contenido de apoyo para el aprendizaje.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4">
+            <div class="surface-card">
+              <iframe
+                class="video-frame"
+                src="https://www.youtube.com/embed/V_CKAglsiQc"
+                title="Video de tecnología dos"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen>
+              </iframe>
+
+              <h3 class="h6 mt-3">Recurso audiovisual 2</h3>
+              <p class="small-muted mb-0">
+                Ideas y conocimientos para seguir aprendiendo.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4">
+            <div class="surface-card">
+              <iframe
+                class="video-frame"
+                src="https://www.youtube.com/embed/5KaP4W0kVEQ"
+                title="Video de tecnología tres"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen>
+              </iframe>
+
+              <h3 class="h6 mt-3">Recurso audiovisual 3</h3>
+              <p class="small-muted mb-0">
+                Un recurso adicional para complementar la formación.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto">
+      <div class="container">
+        <div class="text-center mb-5">
+          <div class="section-kicker">06 / Conversemos</div>
+          <h2 class="section-title">Contacto</h2>
+          <p>Completa el formulario para preparar tu mensaje.</p>
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="contact-panel">
+              <form id="contactForm">
+                <div class="row g-3">
+
+                  <div class="col-md-6">
+                    <label for="fullName">Nombre completo</label>
+                    <input
+                      class="form-control"
+                      id="fullName"
+                      name="fullName"
+                      type="text"
+                      placeholder="Escribe tu nombre"
+                      minlength="3"
+                      maxlength="100"
+                      autocomplete="name"
+                      required>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label for="email">Correo electrónico</label>
+                    <input
+                      class="form-control"
+                      id="email"
+                      name="email"
+                      type="email"
+                      placeholder="correo@ejemplo.com"
+                      autocomplete="email"
+                      required>
+                  </div>
+
+                  <div class="col-12">
+                    <label for="phone">Teléfono</label>
+                    <input
+                      class="form-control"
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      placeholder="Tu número de teléfono"
+                      minlength="7"
+                      maxlength="20"
+                      autocomplete="tel"
+                      required>
+                  </div>
+
+                  <div class="col-12">
+                    <label for="message">Mensaje</label>
+                    <textarea
+                      class="form-control"
+                      id="message"
+                      name="message"
+                      rows="5"
+                      placeholder="Escribe tu mensaje..."
+                      minlength="10"
+                      maxlength="2000"
+                      required></textarea>
+                  </div>
+
+                  <div class="col-12 text-center mt-4">
+                    <button class="btn-accent" type="submit">
+                      Preparar mensaje <i class="bi bi-send"></i>
+                    </button>
+
+                    <div
+                      id="formStatus"
+                      class="mt-3"
+                      role="status"
+                      aria-live="polite">
+                    </div>
+                  </div>
+
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- PIE DE PÁGINA -->
+  <footer>
+    <div class="container text-center">
+      <a class="navbar-brand text-decoration-none" href="#inicio">NEXORA AI.</a>
+
+      <p class="small-muted mt-2 mb-3">
+        Aprendiendo hoy para crear las soluciones del mañana.
+      </p>
+
+      <div class="mb-3">
+        <a
+          class="social-link"
+          href="https://github.com/yeelizaj-pixel"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="GitHub">
+          <i class="bi bi-github"></i>
+        </a>
+
+        <a
+          class="social-link"
+          href="#contacto"
+          aria-label="LinkedIn">
+          <i class="bi bi-linkedin"></i>
+        </a>
+
+        <a
+          class="social-link"
+          href="#contacto"
+          aria-label="Contacto por correo">
+          <i class="bi bi-envelope"></i>
+        </a>
+      </div>
+
+      <p class="small-muted mb-0">
+        &copy; <span id="year"></span> NEXORA AI. Proyecto académico.
+      </p>
+    </div>
+  </footer>
+
+  <!-- VOLVER ARRIBA -->
+  <button
+    id="backToTop"
+    type="button"
+    aria-label="Volver arriba"
+    title="Volver arriba">
+    <i class="bi bi-arrow-up"></i>
+  </button>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+      // ========================================
+      // MODO CLARO Y OSCURO
+      // ========================================
+
+      const themeToggle = document.getElementById("themeToggle");
+      const themeIcon = document.getElementById("themeIcon");
+      const themeLabel = document.getElementById("themeLabel");
+
+      function setTheme(light) {
+        document.body.classList.toggle("light-mode", light);
+
+        themeIcon.className = light
+          ? "bi bi-moon-fill"
+          : "bi bi-sun-fill";
+
+        themeLabel.textContent = light
+          ? "Modo oscuro"
+          : "Modo claro";
+      }
+
+      themeToggle.addEventListener("click", function () {
+        const isLight =
+          document.body.classList.contains("light-mode");
+
+        setTheme(!isLight);
+      });
+
+      // ========================================
+      // MENÚ MÓVIL
+      // ========================================
+
+      const menuElement = document.getElementById("menu");
+      const menuLinks = document.querySelectorAll("#menu .nav-link");
+
+      menuLinks.forEach(function (link) {
+        link.addEventListener("click", function () {
+          if (
+            window.innerWidth < 992 &&
+            menuElement.classList.contains("show")
+          ) {
+            const menuInstance =
+              bootstrap.Collapse.getOrCreateInstance(menuElement);
+
+            menuInstance.hide();
+          }
+        });
+      });
+
+      // ========================================
+      // FILTROS DE PROYECTOS
+      // ========================================
+
+      const filterButtons = document.querySelectorAll(".filter-btn");
+      const projectItems = document.querySelectorAll(".project-item");
+
+      filterButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
+          filterButtons.forEach(function (item) {
+            item.classList.remove("active");
+          });
+
+          button.classList.add("active");
+
+          const filter = button.dataset.filter;
+
+          projectItems.forEach(function (project) {
+            const categories =
+              project.dataset.category.split(" ");
+
+            const showProject =
+              filter === "todos" ||
+              categories.includes(filter);
+
+            project.classList.toggle("d-none", !showProject);
+          });
+        });
+      });
+
+      // ========================================
+      // FORMULARIO DE CONTACTO
+      // ========================================
+
+      const contactForm = document.getElementById("contactForm");
+      const formStatus = document.getElementById("formStatus");
+
+      contactForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        if (!contactForm.checkValidity()) {
+          contactForm.reportValidity();
+          return;
+        }
+
+        const fullName =
+          document.getElementById("fullName").value.trim();
+
+        const email =
+          document.getElementById("email").value.trim();
+
+        const phone =
+          document.getElementById("phone").value.trim();
+
+        const message =
+          document.getElementById("message").value.trim();
+
+        const subject = "Mensaje de contacto desde NEXORA AI";
+
+        const body =
+          "Nombre: " + fullName + "\n" +
+          "Correo: " + email + "\n" +
+          "Teléfono: " + phone + "\n\n" +
+          "Mensaje:\n" + message;
+
+        const mailtoLink =
+          "mailto:?subject=" +
+          encodeURIComponent(subject) +
+          "&body=" +
+          encodeURIComponent(body);
+
+        formStatus.className = "mt-3 status";
+        formStatus.textContent =
+          "Se abrirá tu aplicación de correo para revisar y enviar el mensaje.";
+
+        window.location.href = mailtoLink;
+      });
+
+      // ========================================
+      // BOTÓN VOLVER ARRIBA
+      // ========================================
+
+      const backToTop = document.getElementById("backToTop");
+
+      window.addEventListener("scroll", function () {
+        backToTop.style.display =
+          window.scrollY > 350 ? "block" : "none";
+      });
+
+      backToTop.addEventListener("click", function () {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+      });
+
+      // ========================================
+      // AÑO AUTOMÁTICO
+      // ========================================
+
+      document.getElementById("year").textContent =
+        new Date().getFullYear();
+
+      // ========================================
+      // FONDO MATRIX ANIMADO
+      // ========================================
+
+      const canvas = document.getElementById("matrix");
+      const ctx = canvas.getContext("2d");
+
+      const matrixChars =
+        "01アイウエオカキクケコサシスセソタチツテトナニヌネノ";
+
+      const fontSize = 15;
+
+      let columns = 0;
+      let drops = [];
+      let animationId = null;
+
+      const reducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      );
+
+      function resizeMatrix() {
+        const ratio = Math.min(window.devicePixelRatio || 1, 2);
+
+        canvas.width =
+          Math.floor(window.innerWidth * ratio);
+
+        canvas.height =
+          Math.floor(window.innerHeight * ratio);
+
+        canvas.style.width = window.innerWidth + "px";
+        canvas.style.height = window.innerHeight + "px";
+
+        ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+
+        columns = Math.ceil(window.innerWidth / fontSize);
+
+        drops = Array.from(
+          { length: columns },
+          function () {
+            return Math.random() *
+              (window.innerHeight / fontSize);
+          }
+        );
+
+        drawMatrix();
+      }
+
+      function drawMatrix() {
+        if (!ctx) {
+          return;
+        }
+
+        const light =
+          document.body.classList.contains("light-mode");
+
+        ctx.fillStyle = light
+          ? "rgba(243, 247, 252, 0.12)"
+          : "rgba(8, 13, 22, 0.12)";
+
+        ctx.fillRect(
+          0,
+          0,
+          window.innerWidth,
+          window.innerHeight
+        );
+
+        ctx.fillStyle = light
+          ? "rgba(0, 120, 75, 0.32)"
+          : "rgba(53, 242, 161, 0.62)";
+
+        ctx.font = fontSize + "px monospace";
+
+        for (let i = 0; i < drops.length; i++) {
+          const char =
+            matrixChars[
+              Math.floor(Math.random() * matrixChars.length)
+            ];
+
+          ctx.fillText(
+            char,
+            i * fontSize,
+            drops[i] * fontSize
+          );
+
+          if (
+            drops[i] * fontSize > window.innerHeight &&
+            Math.random() > 0.975
+          ) {
+            drops[i] = 0;
+          }
+
+          drops[i] += 0.35;
+        }
+      }
+
+      function animateMatrix() {
+        drawMatrix();
+        animationId =
+          window.requestAnimationFrame(animateMatrix);
+      }
+
+      resizeMatrix();
+
+      if (!reducedMotion.matches) {
+        animateMatrix();
+      }
+
+      window.addEventListener("resize", resizeMatrix);
+
+      reducedMotion.addEventListener("change", function (event) {
+        if (event.matches && animationId !== null) {
+          window.cancelAnimationFrame(animationId);
+          animationId = null;
+          drawMatrix();
+        } else if (!event.matches && animationId === null) {
+          animateMatrix();
+        }
+      });
+
+    });
+  </script>
+</body>
+</html>
